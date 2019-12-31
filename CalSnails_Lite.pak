@@ -1,0 +1,36 @@
+module=+:154=+:Calendar Advance=+:modules/mx_calsnails/=+:Calendar Module=+:1
+New_function=+:---------------------------=+:0=+:0=+:0=+:0=+:0
+function=+:154=+:153=+:Calendar Advance=+:Calendar Advance Main=+:calendar.php=+:
+parameter=+:153=+:197=+:cal_mod_group=+:Function=+:0=+:mx_get_groups("{parameter_value}","{parameter_id}[]")=+:0=+:0
+parameter=+:153=+:198=+:auth_reg=+:Function=+:2=+:get_list_static("{parameter_id}[]",array("No access","View only","View,Suggest","View,Add","View,Add(Edit/Delete own)"),"{parameter_value}")=+:0=+:0
+parameter=+:153=+:199=+:cal_filter=+:Boolean=+:0=+:=+:0=+:0
+parameter=+:153=+:200=+:auth_all=+:Function=+:2=+:get_list_static("{parameter_id}[]",array("No access","View only","View,Suggest","View,Add","View,Add(Edit/Delete own)"),"{parameter_value}")=+:0=+:0
+parameter=+:153=+:201=+:cal_hebrew=+:Boolean=+:0=+:=+:0=+:0
+parameter=+:0=+:0=+:0=+:endoflist=+:0=+:0
+block=+:=+:Calendar Advance=+:Demo block=+:153=+:0=+:5=+:0=+:0=+:0=+:0=+:1=+:1
+New_function=+:---------------------------=+:0=+:0=+:0=+:0=+:0
+function=+:154=+:154=+:CalendarAdv Events=+:Basic script to deal with calendar event reports=+:mx_calendar_events.php=+:
+parameter=+:154=+:201=+:Calendar_Block_Title=+:Text=+:=+:=+:0=+:0
+parameter=+:154=+:202=+:Calendar_Events_dateformat=+:Text=+:l, d F Y h:i a=+:=+:0=+:0
+parameter=+:154=+:203=+:Calendar_Vertical_Size=+:Number=+:200=+:=+:0=+:0
+parameter=+:154=+:204=+:Calendar_Text_Length=+:Number=+:30=+:=+:0=+:0
+parameter=+:154=+:205=+:Calendar_Events_Range=+:Menu_single_select=+:this week=+:a:6:{i:0;s:5:"today";i:1;s:9:"this week";i:2;s:9:"next week";i:3;s:13:"thisnext week";i:4;s:10:"this month";i:5;s:10:"next month";}=+:0=+:0
+parameter=+:154=+:206=+:Calendar_Events_Prev=+:Number=+:3=+:=+:0=+:0
+parameter=+:154=+:207=+:Calendar_Events_Next=+:Number=+:3=+:=+:0=+:0
+parameter=+:154=+:208=+:target_block=+:Function=+:0=+:get_list_formatted("block_list","{parameter_value}","{parameter_id}[]", "calendar.php")=+:0=+:0
+parameter=+:0=+:0=+:0=+:endoflist=+:0=+:0
+block=+:=+:CalendarAdv Events=+:Demo block=+:154=+:0=+:5=+:0=+:0=+:0=+:0=+:1=+:1
+New_function=+:---------------------------=+:0=+:0=+:0=+:0=+:0
+function=+:154=+:155=+:CalAdvance Mini=+:Calendar Lite (mini function)=+:mx_calendar_mini.php=+:
+parameter=+:155=+:209=+:target_block=+:Function=+:0=+:get_list_formatted("block_list","{parameter_value}","{parameter_id}[]", "calendar.php")=+:0=+:0
+parameter=+:0=+:0=+:0=+:endoflist=+:0=+:0
+block=+:=+:CalendarAdv Mini=+:Demo block=+:155=+:0=+:5=+:0=+:0=+:0=+:0=+:1=+:1
+New_function=+:---------------------------=+:0=+:0=+:0=+:0=+:0
+function=+:154=+:156=+:Calendar Querys1=+:Sample function to help you export Calendar Lite data=+:mx_calendar_query.php=+:
+parameter=+:156=+:210=+:Calendar_Block_Title=+:Text=+:=+:=+:0=+:0
+parameter=+:156=+:211=+:Calendar_Events_dateformat=+:Text=+:=+:=+:0=+:0
+parameter=+:156=+:212=+:Calendar_Where=+:Text=+:=+:=+:0=+:0
+parameter=+:156=+:213=+:Calendar_Order=+:Text=+:stamp, subject=+:=+:0=+:0
+parameter=+:0=+:0=+:0=+:endoflist=+:0=+:0
+block=+:=+:Calendar Querys1=+:Demo block=+:156=+:0=+:5=+:0=+:0=+:0=+:0=+:1=+:1
+function=+:0=+:0=+:0=+:endoflist=+:0=+:0
