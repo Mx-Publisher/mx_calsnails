@@ -2,7 +2,7 @@
 /**
 *
 * @package MX-Publisher Module - mx_calsnails
-* @version $Id: cal_functions.php,v 1.29 2020/04/16 20:54:21 orynider Exp $
+* @version $Id: cal_functions.php,v 1.29 2020/04/17 01:54:21 orynider Exp $
 * @copyright (c) 2002-2006 [Martin, Markus, Jon Ohlsson] MX-Publisher Project Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License v2
 * @link http://mxpcms.sf.net/
@@ -1550,13 +1550,16 @@ class AdvanceCalendar extends JewishCalendar
 				if ($holiday_names) 
 				{
 					$JMonthN = $lang[$JMonthN] ? $lang[$JMonthN]  : $JMonthN;
-					$thisday .= "&nbsp;<span class='month-name'>(".
-					$JDay . ' ' . $JMonthN . "&nbsp;)</span>";
-					$thisday .= "</span>\n";
-					
-					$thisday .= "<br /><span class='month-name'>".
-					"&nbsp;" . $holiday_names ."</span>";
-					$thisday .= "</span>\n";
+					if ($today_month == $month)
+					{
+						$thisday .= "&nbsp;<span class='month-name'>(".
+						$JDay . ' ' . $JMonthN . "&nbsp;)</span>";
+						$thisday .= "</span>\n";
+						
+						$thisday .= "<br /><span class='month-name'>".
+						"&nbsp;" . $holiday_names ."</span>";
+						$thisday .= "</span>\n";
+					}
 				}
 				elseif (($JDay == 1) || ($JDay == 10) || ($JDay == 14) || ($JDay == 15) || ($JDay == 21) || ($JDay == 29) || ($JDay == 30))
 				{
@@ -2640,10 +2643,12 @@ class AdvanceCalendar extends JewishCalendar
 			$list[NISAN][19][] = 'pesakhKholHaMoed';
 			$list[NISAN][20][] = 'pesakhKholHaMoed';
 			$list[NISAN][21][] = 'pesakh7';
+			
 			$list[NISAN][22][] = 'pesakh8';
+			
 			if ($diaspora) 
 			{
-
+				
 				if ($isru) 
 				{
 					$list[NISAN][23][] = 'pesakhIsruKhag';
@@ -2651,14 +2656,18 @@ class AdvanceCalendar extends JewishCalendar
 			} 
 			else 
 			{
+				
 				if ($isru) 
 				{
 					$list[NISAN][22][] = 'pesakhIsruKhag';
 				}
 			}
+			
+			
 			// Yom HaBikurei:
 			$o = $this->passover_day('JOmerDay', $g_year, $j_year);
 			$list[NISAN][$o][] = 'yomHaBikurei';
+
 			// Yom HaShoaa:
 			$d->set($j_year, NISAN, 27);
 			// Rule #1: fri,sat -> thu -> sun
