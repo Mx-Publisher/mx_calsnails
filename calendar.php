@@ -2,7 +2,7 @@
 /**
 *
 * @package MX-Publisher Module - mx_calsnails
-* @version $Id: calendar.php,v 1.33 2013/10/08 19:43:41 orynider Exp $
+* @version $Id: calendar.php,v 1.34 2020/04/16 20:43:41 orynider Exp $
 * @copyright (c) 2002-2006 [Martin, Markus, Jon Ohlsson] MX-Publisher Project Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License v2
 * @link http://www.MX-Publisher.com
@@ -264,7 +264,7 @@ else
 {
 	if ( $mode == 'validate' && $caluser >= 5 )
 	{	
-		$caladv->validate();		
+		$caladv->validate();
 	}
 	elseif ( $mode == 'display' && $caluser >= 1 )
 	{	
