@@ -2,10 +2,10 @@
 /**
 *
 * @package MX-Publisher Module - mx_calsnails
-* @version $Id: cal_functions.php,v 1.28 2014/04/09 08:54:21 orynider Exp $
+* @version $Id: cal_functions.php,v 1.29 2020/04/16 20:54:21 orynider Exp $
 * @copyright (c) 2002-2006 [Martin, Markus, Jon Ohlsson] MX-Publisher Project Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License v2
-* @link http://www.MX-Publisher.com
+* @link http://mxpcms.sf.net/
 *
 */
 
@@ -79,7 +79,7 @@ class AdvanceCalendar extends JewishCalendar
 		
 		$this->month = date(n); //gregorianMonth of Pasca or Omer
 		$this->day = date(j); //regorianDay of Pasca or Omer
-		$this->year = date(Y); //gregorianYear of Pasca or Omer		
+		$this->year = date(Y); //gregorianYear of Pasca or Omer
 		$this->date = date("D d M Y", strtotime("$this->year-$this->month-$this->day -0 days"));		
 	}
 	
@@ -122,7 +122,7 @@ class AdvanceCalendar extends JewishCalendar
 	function module( $id )
 	{
 		$module_name = 'Calendar';
-		$classname = $id .'Calendar';	
+		$classname = $id .'Calendar';
 		if (!class_exists($id . $module_name))
 		{
 			global $module_root_path, $phpEx;
@@ -212,7 +212,7 @@ class AdvanceCalendar extends JewishCalendar
 	function factory($id = 'Advance', $settings = NULL) 
 	{
 		$module_name = 'Calendar';
-		$classname = $id .'Calendar';	
+		$classname = $id .'Calendar';
 		if (!class_exists($id . $module_name))
 		{
 			global $module_root_path, $phpEx;
@@ -830,7 +830,8 @@ class AdvanceCalendar extends JewishCalendar
 			$message = $l_add . "</br></br><a href='" . $url . "'>" . $lang['Cal_back2cal'] . "</a>";
 			mx_message_die( GENERAL_MESSAGE, $message, '', __LINE__, __FILE__, $sql );
 		}
-	}	
+	}
+	
 	/**
 	| HTML Output Section - Using Templates (All Output Related)
 	* Returns a nice HTML table showing one month in the calendar.
@@ -869,13 +870,13 @@ class AdvanceCalendar extends JewishCalendar
 	
 		// $now contains today's date, and will be highlighted on the calendar printed.
 		// You may wish to add to it the user's timezone offset.
-		$now = getdate(time());		
+		$now = getdate(time());
 		$julDate = $this->caldean_date('Date');
 		$JDate = $this->caldean_date('HebrewDate');
 		$JMonth = $this->caldean_date('JMonth');
 		$JYear = $this->caldean_date('JYear'); 
 		$JDay = $this->caldean_date('JDay');
-		$JMonthName = $this->caldean_date('CaldeanMonth');			
+		$JMonthName = $this->caldean_date('CaldeanMonth');
 		//
 		// Step 1:
 		//
@@ -934,7 +935,7 @@ class AdvanceCalendar extends JewishCalendar
 		// Read configuration definition
 		$template_out = 'israel_calendar'; //$mx_block->get_parameters('template');	
 		$title = !empty($title) ? $title : $lang['Israel_Calendar'];
-		$direction = ($language == 'he' ? 'rtl' : 'ltr');		
+		$direction = ($language == 'he' ? 'rtl' : 'ltr');
 		$template_out = ($template_out == 'israel_calendar') ? array('calendar_block' => 'israel_calendar.tpl') : array('calendar_block' => 'hebcal_calendar.tpl');		
 		$template->set_filenames($template_out);
 		
@@ -958,7 +959,7 @@ class AdvanceCalendar extends JewishCalendar
 			$output .= "<th class='day-header'>$day</td>";
 			$template->assign_block_vars('days_of_week', array(
 				'S_ROW_DAY'	=> $day)
-			);		  
+			);
 	    }
 		$output .= "</tr>";
 	
@@ -969,7 +970,7 @@ class AdvanceCalendar extends JewishCalendar
 			$template->assign_block_vars('weekrow', array('S_ROW_DAY' => $day));
 			if ($dow < $prev_dow)
 			{
-				$template->assign_block_vars('weekrow.weekrow_switch_day', array('S_ROW_DAY' => $day));			
+				$template->assign_block_vars('weekrow.weekrow_switch_day', array('S_ROW_DAY' => $day));
 				// Starting a new week, so start a new row in table.
 				if ($day == 1)
 				{
@@ -982,7 +983,7 @@ class AdvanceCalendar extends JewishCalendar
 						$output .= "<td class='empty-day'></td>";
 					}
 				}
-				else				
+				else
 				{
 					$output .= "</tr>";
 					$output .= "<tr>";
@@ -991,10 +992,10 @@ class AdvanceCalendar extends JewishCalendar
 			}
 			
 			$jdc = gregoriantojd($month, $day, $year);
-			$dow = jddayofweek($jdc, 0) + 1;			
+			$dow = jddayofweek($jdc, 0) + 1;
 			$j_date = $this->convertToNative(array('jdc' => $jdc));
 			
-			$julDate = $this->caldean_date('Date', $month, $thisday, $year);			
+			$julDate = $this->caldean_date('Date', $month, $thisday, $year);
 			$JDate = $this->caldean_date('HebrewDate', $month, $thisday, $year);
 			$JMonth = $j_date['mon'] = $this->caldean_date('JMonth', $month, $thisday, $year);
 			$JYear = $j_date['year'] = $this->caldean_date('JYear', $month, $thisday, $year); 
@@ -1004,18 +1005,19 @@ class AdvanceCalendar extends JewishCalendar
 
 			$holidays = $this->getMoadim($JYear, $JMonth, $JDay, $mode = CAL_LANG_FOREIGN); //$holidays = $this->getHolidays($j_date);
 			$holiday_names = '';
-			$holiday_classes = array();			
+			$holiday_classes = array();
 			
 			if ($holidays) 
 			{
 				foreach ($holidays as $hday) 
 				{
+					$hday['name'] = $lang[$hday['name']] ? $lang[$hday['name']] : $hday['name'];
 					$holiday_classes[$hday['id']] = 1;
 					$holiday_classes[$hday['class']] = 1;
-					$holiday_names .= "<div class='holiday-name'>$hday[name]</div>\n";
+					$holiday_names .= "<div class='holiday-name'>".$hday['name']."</div>\n";
 					$template->assign_block_vars('weekrow', array(
 						'HOLIDAY_NAME'	=> $hday['name'])
-					);						
+					);
 				}
 			}
 			if ($jdc == $todays_jdc) 
@@ -1033,58 +1035,60 @@ class AdvanceCalendar extends JewishCalendar
 				'S_ROW_JDAY_NUM'	=> $this->getNumber($j_date['mday']),
 				'S_ROW_DAY'	=> $day,
 				'S_ROW_JDAY'		=> $j_date['mday'])
-			);				
+			);
 			if ($j_date['mday'] == 1)
 			{
-				$template->assign_block_vars('weekrow.weekrow_switch_jday', array());			
+				$template->assign_block_vars('weekrow.weekrow_switch_jday', array());
 				$output .= " <span class='month-name'>(".
 				$this->getMonthName($j_date['year'], $j_date['mon']).")</span>";
 				$output .= "</span>\n";
 				$output .= $holiday_names;
-				$output .= "</td>";			
-				$template->assign_block_vars('weekrow.weekrow_switch_jday', array(				
+				$output .= "</td>";
+				$template->assign_block_vars('weekrow.weekrow_switch_jday', array(
 					'MONTH_NAME'	=> $this->getMonthName($j_date['year'], $j_date['mon']),
 					'HOLIDAY_NAMES'	=> $holiday_names)
-				);					
-				$prev_dow = $dow;				
+				);
+				$prev_dow = $dow;
 			}
 			for ($i = $dow + 1; $i <= 7; $i++) 
 			{
 				$output .= "<td class='empty'></td>";
 				// Assign dummies
-				$template->assign_block_vars('weekrow.weekrow_switch_empty', array());								
+				$template->assign_block_vars('weekrow.weekrow_switch_empty', array());
 			}
 			$output .= "</tr>";
-			$output .= "</table>";			
+			$output .= "</table>";
 		}
+		
 		$template->assign_vars(array(
 			'L_TITLE'		=> $title,
 			'U_PORTAL_ROOT_PATH' 	=> PORTAL_URL,
 			'U_PHPBB_ROOT_PATH' 	=> PHPBB_URL,
 			'TEMPLATE_ROOT_PATH'	=> TEMPLATE_ROOT_PATH,	
-			'CURRENT_MOON'	=> $JMonthName,
+			'CURRENT_MOON'	=> $lang[$JMonthName] ? $lang[$JMonthName] : $JMonthName,
 			'CURRENT_DAY'	=> $JDay, 
 			'CURRENT_YEAR'	=> $JYear,
 			'CURRENT_TIME_DISPLAY'	=> $current_time_display,
 			
 			'HOLIDAY_CLASSES'	=> $holiday_classes,
-			'S_ROW_JDAY_NUM'	=> $this->getNumber($j_date['mday']),				
-			'S_ROW_GDAY_NUM'	=> $day,			
+			'S_ROW_JDAY_NUM'	=> $this->getNumber($j_date['mday']),
+			'S_ROW_GDAY_NUM'	=> $day,
 			
 			'MONTH_NAME'	=> $this->getMonthName($j_date['year'], $j_date['mon']),
-			'HOLIDAY_NAMES'	=> $holiday_names,				
+			'HOLIDAY_NAMES'	=> $holiday_names,
 			'PREV_DOW'	=> $dow,
 
 			'BLOCK_WIDTH'	=> (!empty($b_width) ? $b_width : '190'),
 			'BLOCK_HEIGHT'	=> (!empty($b_height) ? $b_height : '230'),
 			'BLOCK_SIZE'	=> $block_size
-		));			
-		echo $output;			
-		//$template->pparse('calendar_block');			
-	}	
+		));
+		echo $output;
+		//$template->pparse('calendar_block');
+	}
+	
 	/*\
 	|	HTML Output Section - Using Templates (All Output Related)
-	\*/		
+	\*/
 	function display()
 	{
 		global $thisscript, $phpbb_root_path, $phpEx, $action, $homeurl, $images, $phpbbheaders;
@@ -1285,7 +1289,7 @@ class AdvanceCalendar extends JewishCalendar
 			$currentyear = phpBB2::create_date("Y", time(), $board_config['board_timezone']);
 		}
 		*/
-
+		
 		// Timezone fix
 		$currentday = phpBB2::create_date( "j", time(), $userdata['calsadv_timezone'] );
 		$currentmonth = phpBB2::create_date( "m", time(), $userdata['calsadv_timezone'] );
@@ -1503,11 +1507,11 @@ class AdvanceCalendar extends JewishCalendar
 				$cellbody = 'class=row1';
 			}
 
-			//caldean_date($mode, $month, $day, $year) 	
+			//caldean_date($mode, $month, $day, $year) 
 			$jdc = gregoriantojd($month, $day, $year);
-			$dow = jddayofweek($jdc, 0) + 1;			
-			$j_date = $this->convertToNative(array('jdc' => $jdc));			
-			$julDate = $this->caldean_date('Date', $month, $thisday, $year);			
+			$dow = jddayofweek($jdc, 0) + 1;
+			$j_date = $this->convertToNative(array('jdc' => $jdc));
+			$julDate = $this->caldean_date('Date', $month, $thisday, $year);
 			$JDate = $this->caldean_date('HebrewDate', $month, $thisday, $year);
 			$JMonth = $j_date['mon'] = $this->caldean_date('JMonth', $month, $thisday, $year);
 			$JYear = $j_date['year'] = $this->caldean_date('JYear', $month, $thisday, $year); 
@@ -1526,7 +1530,7 @@ class AdvanceCalendar extends JewishCalendar
 				{
 					$holiday_classes[$hday['id']] = 1;
 					$holiday_classes[$hday['class']] = 1;
-					$holiday_names .= $hday['name'];
+					$holiday_names .= $lang[$hday['name']] ? $lang[$hday['name']]  : $hday['name'];
 				}
 			}
 			
@@ -1542,11 +1546,12 @@ class AdvanceCalendar extends JewishCalendar
 			}
 			
 			if ($cal_hebrew)
-			{					
+			{
 				if ($holiday_names) 
 				{
+					$JMonthN = $lang[$JMonthN] ? $lang[$JMonthN]  : $JMonthN;
 					$thisday .= "&nbsp;<span class='month-name'>(".
-					$JDay . $JMonthN . "&nbsp;)</span>";
+					$JDay . ' ' . $JMonthN . "&nbsp;)</span>";
 					$thisday .= "</span>\n";
 					
 					$thisday .= "<br /><span class='month-name'>".
@@ -1554,30 +1559,33 @@ class AdvanceCalendar extends JewishCalendar
 					$thisday .= "</span>\n";
 				}
 				elseif (($JDay == 1) || ($JDay == 10) || ($JDay == 14) || ($JDay == 15) || ($JDay == 21) || ($JDay == 29) || ($JDay == 30))
-				{			
+				{
+					$JMonthN = $lang[$JMonthN] ? $lang[$JMonthN]  : $JMonthN;
 					$thisday .= "&nbsp;<span class='month-name'>(".
-					$JDay . $JMonthN . "&nbsp;)</span>";
+					$JDay . ' ' . $JMonthN . "&nbsp;)</span>";
 					$thisday .= "</span>\n";
-				}						
+				}
 				//
 				// Holidays of Nisan
 				//
-				if ($j_month == NISAN) 
-				{	
+				if (strtoupper($j_month) == NISAN) 
+				{
+					$JMonthN = $lang[$JMonthN] ? $lang[$JMonthN]  : $JMonthN;
 					if (!$holiday_names && (($JDay == 29) || ($JDay == 30)))
-					{			
+					{
 						$thisday .= "&nbsp;<span class='month-name'>(".
-						$JDay . $JMonthN . "&nbsp;)</span>";
+						$JDay . ' ' . $JMonthN . "&nbsp;)</span>";
 						$thisday .= "</span>\n";
-					}				
+					}
 				}
 			    //
 			    // Holidays of Iyar
 			    //
-				if ($j_month == IYAR) 
+				if (strtoupper($j_month) == IYAR) 
 				{
+					$JMonthN = $lang[$JMonthN] ? $lang[$JMonthN]  : $JMonthN;
 					if (!$holiday_names && (($JDay == 29) || ($JDay == 30)))
-					{			
+					{
 						$thisday .= "&nbsp;<span class='month-name'>(".
 						$JDay . $JMonthN . "&nbsp;)</span>";
 						$thisday .= "</span>\n";
@@ -1586,22 +1594,24 @@ class AdvanceCalendar extends JewishCalendar
 			    //
 			    // Holidays of Sivan
 			    //
-				if ($j_month == SIVAN) 
+				if (strtoupper($j_month) == SIVAN) 
 				{
+					$JMonthN = $lang[$JMonthN] ? $lang[$JMonthN]  : $JMonthN;
 					if (!$holiday_names && (($JDay == 29) || ($JDay == 30)))
-					{			
+					{
 						$thisday .= "&nbsp;<span class='month-name'>(".
 						$JDay . $JMonthN . "&nbsp;)</span>";
 						$thisday .= "</span>\n";
 					}
-				}			    
+				}    
 			    //
 			    // Holidays of Tamuz
 			    //
-				if ($j_month == TAMUZ) 
+				if (strtoupper($j_month) == TAMUZ) 
 				{
+					$JMonthN = $lang[$JMonthN] ? $lang[$JMonthN]  : $JMonthN;
 					if (!$holiday_names && ($JDay == 29))
-					{			
+					{
 						$thisday .= "&nbsp;<span class='month-name'>(".
 						$JDay . $JMonthN . "&nbsp;)</span>";
 						$thisday .= "</span>\n";
@@ -1610,55 +1620,60 @@ class AdvanceCalendar extends JewishCalendar
 			    //
 			    // Holidays of Av
 				//
-				if ($j_month == AV) 
+				if (strtoupper($j_month) == AV) 
 				{
+					$JMonthN = $lang[$JMonthN] ? $lang[$JMonthN]  : $JMonthN;
 					if (!$holiday_names && (($JDay == 29) || ($JDay == 30)))
-					{			
+					{
 						$thisday .= "&nbsp;<span class='month-name'>(".
 						$JDay . $JMonthN . "&nbsp;)</span>";
 						$thisday .= "</span>\n";
 					}
-				}		    
+				}   
 			    //
 			    // Holidays of Elul
 			    //
-				if ($j_month == ELUL) 
+				if (strtoupper($j_month) == ELUL) 
 				{
+					$JMonthN = $lang[$JMonthN] ? $lang[$JMonthN]  : $JMonthN;
 					if (!$holiday_names && ($JDay == 29))
-					{			
+					{
 						$thisday .= "&nbsp;<span class='month-name'>(".
 						$JDay . $JMonthN . "&nbsp;)</span>";
 						$thisday .= "</span>\n";
 					}
-				}					
+				}
 				//
 			    // Holidays of Tishrei
 			    //
-			    if ($j_month == TISHREI) 
+			    if (strtoupper($j_month) == TISHREI) 
 				{
+					$JMonthN = $lang[$JMonthN] ? $lang[$JMonthN]  : $JMonthN;
 					if (!$holiday_names && ($JDay == 30))
-					{			
+					{
 						$thisday .= "&nbsp;<span class='month-name'>(".
 						$JDay . $JMonthN . "&nbsp;)</span>";
 						$thisday .= "</span>\n";
 					}
 			    }
-			    if ($j_month == HESHVAN) 
+			    if (strtoupper($j_month) == HESHVAN) 
 				{
+					$JMonthN = $lang[$JMonthN] ? $lang[$JMonthN]  : $JMonthN;
 					if (!$holiday_names && ($JDay == 30))
-					{			
+					{
 						$thisday .= "&nbsp;<span class='month-name'>(".
 						$JDay . $JMonthN . "&nbsp;)</span>";
 						$thisday .= "</span>\n";
 					}
-			    }				
+			    }
 			    //
 			    // Holidays of Kislev or Tevet
 			    //
-			    if ($j_month == KISLEV) 
+			    if (strtoupper($j_month) == KISLEV) 
 				{
+					$JMonthN = $lang[$JMonthN] ? $lang[$JMonthN]  : $JMonthN;
 					if (!$holiday_names && ($JDay == 30))
-					{			
+					{
 						$thisday .= "&nbsp;<span class='month-name'>(".
 						$JDay . $JMonthN . "&nbsp;)</span>";
 						$thisday .= "</span>\n";
@@ -1666,11 +1681,12 @@ class AdvanceCalendar extends JewishCalendar
 			    }
 			    //
 			    // Holidays of Tevet
-			    //		    
-			    if ($j_month == TEVET) 
+			    //	   
+			    if (strtoupper($j_month) == TEVET) 
 				{
+					$JMonthN = $lang[$JMonthN] ? $lang[$JMonthN]  : $JMonthN;
 					if (!$holiday_names && ($JDay == 29))
-					{			
+					{
 						$thisday .= "&nbsp;<span class='month-name'>(".
 						$JDay . $JMonthN . "&nbsp;)</span>";
 						$thisday .= "</span>\n";
@@ -1679,10 +1695,11 @@ class AdvanceCalendar extends JewishCalendar
 			    //
 			    // Holidays of Shevat
 			    //
-				if ($j_month == SHEVAT)
+				if (strtoupper($j_month) == SHEVAT)
 				{
+					$JMonthN = $lang[$JMonthN] ? $lang[$JMonthN]  : $JMonthN;
 					if (!$holiday_names && ($JDay == 30))
-					{			
+					{
 						$thisday .= "&nbsp;<span class='month-name'>(".
 						$JDay . $JMonthN . "&nbsp;)</span>";
 						$thisday .= "</span>\n";
@@ -1691,25 +1708,27 @@ class AdvanceCalendar extends JewishCalendar
 			    //
 			    // Holidays of Adar
 			    //
-				if ($j_month == ADAR || $j_month == ADAR_A) 
+				if (strtoupper($j_month) == ADAR || strtoupper($j_month) == ADAR_A) 
 				{
+					$JMonthN = $lang[$JMonthN] ? $lang[$JMonthN]  : $JMonthN;
 					if (!$holiday_names && ($JDay == 30))
-					{			
+					{
 						$thisday .= "&nbsp;<span class='month-name'>(".
 						$JDay . $JMonthN . "&nbsp;)</span>";
 						$thisday .= "</span>\n";
-					}		
+					}
 				}
-				if ($j_month == ADAR_B) 
+				if (strtoupper($j_month) == ADAR_B) 
 				{
+					$JMonthN = $lang[$JMonthN] ? $lang[$JMonthN]  : $JMonthN;
 					if (!$holiday_names && ($JDay == 30))
-					{			
+					{
 						$thisday .= "&nbsp;<span class='month-name'>(".
 						$JDay . $JMonthN . "&nbsp;)</span>";
 						$thisday .= "</span>\n";
-					}		
-				}				
-			}				
+					}
+				}
+			}
 			$template->assign_block_vars(
 				'daycell', array( 'S_CELL' => $cellback,
 				'U_DAY' => $url_day,
@@ -2209,7 +2228,7 @@ class AdvanceCalendar extends JewishCalendar
 		{
 			$GregLunarDay = str_pad($I - 10, 2, '0', STR_PAD_LEFT);
 			$PascalunarDay = str_pad($I - 11, 2, '0', STR_PAD_LEFT);
-			$GregLunarMonth = 04;			
+			$GregLunarMonth = 04;
 		}
 
 		$J = ($year + (int)($year / 4) + $I + 2 - $C + (int)($C / 4)) % 7;
@@ -2218,10 +2237,11 @@ class AdvanceCalendar extends JewishCalendar
 		$OmerDay = $L + 28 - 31 * ((int)($m / 4));
 		$OmerMonth = 3 + (int)(($L + 40) / 44);
 
-		$lagBaOmerDay = 18 + $OmerDay - $GregLunarDay; //18 = 30					
+		$lagBaOmerDay = 18 + $OmerDay - $GregLunarDay; //18 = 30
 		$lagBaOmerMonth = 4 + (int)(($L + 40) / 44);
 		$AscensionDay = 25 + $OmerDay - $GregLunarDay; //25 = 40
-		
+		$ShavuotMonth = 5 + (int)(($L + 40) / 44);
+		$PentecostDay = 4 + $OmerDay - $GregLunarDay; //5 = 50
 		//1st omer is from 16 to 22 Nisan in Hag Matzot Shavua after Shabbbath is down
 		$JOmerDay01 = $this->caldean_date('JDay', $OmerMonth, $OmerDay, $year);
 		//$JOmerYear = $this->caldean_date('JYear', $OmerMonth, $OmerDay, $year);
@@ -2272,16 +2292,16 @@ class AdvanceCalendar extends JewishCalendar
 			case 'OmerDay':
 				return $OmerDay;
 			break;
-			case 'JOmerDay':	
+			case 'JOmerDay':
 				return $JOmerDay01; //$JOmerDay01
-			break;			
+			break;
 			case 'BaOmerMonth':
 				return $lagBaOmerMonth;
 			break;
 			case 'BaOmerDay':
 				return $lagBaOmerDay; //hebcal offset
-			break;			
-			case 'BOmerDay':	
+			break;
+			case 'BOmerDay':
 				return $this->caldean_date('JDay', $lagBaOmerMonth, $lagBaOmerDay, $year); //gregorian cal hebday
 			break;
 			case 'AscensionDay':
@@ -2289,13 +2309,16 @@ class AdvanceCalendar extends JewishCalendar
 			break;
 			case 'AliyahDay':
 				return $AliyahDay; // 40 days
-			break;			
+			break;
+			case 'ShavuotMonth':
+				return $ShavuotMonth;
+			break;
 			case 'PentecostDay':
 				return $PentecostDay;
 			break;
 			case 'ShavuotDay':
 				return $ShavuotDay;
-			break;			
+			break;
 			default:
 			break;
 		}
@@ -2502,7 +2525,8 @@ class AdvanceCalendar extends JewishCalendar
 			// The English spelling for the holidays I took from "Jewish Calendar for Linux" by Refoyl Finkl.
 			// Nisan
 				'roshKodeshimKhag' =>	array('native' => 'ראש חודשים',     		'foreign' => t('Rosh Kodeshim'),  'class' => 'khol'),
-				'yomhaSher' =>          array('native' => 'יום השׂר',     			'foreign' => t('Yom haSher'),   			'class' => 'spec'),				
+				'yomhaSher' =>          array('native' => 'יום השׂר',     			'foreign' => t('Yom haSher'),   			'class' => 'spec'),
+				'taanitBechorim' =>       array('native' => 'תַעֲנִית בְּכֹ֣ורים', 			'foreign' => t('Taanit Bechorim'),			'class' => 'taanit'),
 				'pesakhErevKhag' =>     array('native' => 'ערב פסח',    			'foreign' => t('Erev Pesakh'),  			'class' => 'khol'),
 				'pesakh1' =>            array('native' => 'פסח',        			'foreign' => t('Pesakh'),       			'class' => 'shabat'),
 				'pesakh2' =>            array('native' => 'שני של פסח (גולה)', 		'foreign' =>  t('Pesakh II (Diaspora)'), 'class' => 'shabat'),
@@ -2510,7 +2534,7 @@ class AdvanceCalendar extends JewishCalendar
 				'pesakh7' =>            array('native' => 'שביעי של פסח',     		'foreign' =>  t('Pesakh VII'),  			'class' => 'shabat'),
 				'pesakh8' =>            array('native' => 'שמיני של פסח (גולה)', 	'foreign' => t('Pesakh VIII (Diaspora)'), 'class' => 'shabat'),
 				'pesakhIsruKhag' =>     array('native' => 'אסרו חג',    			'foreign' => t('Isru Khag Pesakh'),   'class' => 'khol'),
-				'yomHaBikurei' =>		array('native' => 'בְּיֹוםבִּכּוּרִ',    			'foreign' => t('Yom HaBikurei'),   'class' => 'omer'),				
+				'yomHaBikurei' =>		array('native' => 'בְּיֹוםבִּכּוּרִ',    			'foreign' => t('Yom HaBikurei'),   'class' => 'omer'),
 				'omer' =>               array('native' => 'ספירת העומר',			'foreign' => t('Sefirat HaOmer'),     'class' => 'omer'),
 				'yomHaShoa' =>          array('native' => 'יום השואה',  			'foreign' => t('Yom HaShoa'),   			'class' => 'taanit'),
 			// Iyar
@@ -2521,10 +2545,17 @@ class AdvanceCalendar extends JewishCalendar
 				'yomAscension' =>		array('native' => 'יום העלייה',				'foreign' => t('Yom HaAliyah'),				'class' => 'khol'),
 				'yomYerishalayim' =>    array('native' => 'יום ירושלים',			'foreign' => t('Yom Yerushalayim'),			'class' => 'khol'),
 			// Sivan
+				'shavuotErevKhagParashim' =>    array('native' => 'ערב שבועות', 			'foreign' => t('Erev Shavuot Parashim'), 			'class' => 'khol'),
+				'shavuotParashim'  =>           array('native' => 'שבועות',     			'foreign' => t('Shavuot Parashim'),      			'class' => 'shabat'),
+				'shavuot2Parashim'  =>          array('native' => 'שבועות ב\' (גולה)', 		'foreign' => t('Shavuot II Parashim (Diaspora)'), 'class' => 'shabat'),
+				'shavuotIsruKhagParashim' =>    array('native' => 'אסרו חג',    			'foreign' => t('Isru Khag Shavuot Parashim'),  'class' => 'khol'),
+				
+			
 				'shavuotErevKhag' =>    array('native' => 'ערב שבועות', 			'foreign' => t('Erev Shavuot'), 			'class' => 'khol'),
 				'shavuot'  =>           array('native' => 'שבועות',     			'foreign' => t('Shavuot'),      			'class' => 'shabat'),
 				'shavuot2'  =>          array('native' => 'שבועות ב\' (גולה)', 		'foreign' => t('Shavuot II (Diaspora)'), 'class' => 'shabat'),
 				'shavuotIsruKhag' =>    array('native' => 'אסרו חג',    			'foreign' => t('Isru Khag Shavuot'),  'class' => 'khol'),
+				
 			// Tamuz
 				'tsomTamuz' =>          array('native' => 'צום תמוז',   			'foreign' => t('Tsom Tamuz'),   			'class' => 'taanit'),
 			// Av
@@ -2588,7 +2619,8 @@ class AdvanceCalendar extends JewishCalendar
 		{
 		
 			$list[NISAN][1][] = 'roshKodeshimKhag';
-			$list[NISAN][10][] = 'yomhaSher';        		
+			$list[NISAN][10][] = 'yomhaSher';
+			$list[NISAN][13][] = 'taanitBechorim';
 			if ($eves) 
 			{
 				$list[NISAN][14][] = 'pesakhErevKhag';
@@ -2608,10 +2640,10 @@ class AdvanceCalendar extends JewishCalendar
 			$list[NISAN][19][] = 'pesakhKholHaMoed';
 			$list[NISAN][20][] = 'pesakhKholHaMoed';
 			$list[NISAN][21][] = 'pesakh7';
-			
+			$list[NISAN][22][] = 'pesakh8';
 			if ($diaspora) 
 			{
-				$list[NISAN][22][] = 'pesakh8';
+
 				if ($isru) 
 				{
 					$list[NISAN][23][] = 'pesakhIsruKhag';
@@ -2625,8 +2657,8 @@ class AdvanceCalendar extends JewishCalendar
 				}
 			}
 			// Yom HaBikurei:
-			$o = $this->passover_day('JOmerDay', $g_year, $j_year);				
-			$list[NISAN][$o][] = 'yomHaBikurei';				
+			$o = $this->passover_day('JOmerDay', $g_year, $j_year);
+			$list[NISAN][$o][] = 'yomHaBikurei';
 			// Yom HaShoaa:
 			$d->set($j_year, NISAN, 27);
 			// Rule #1: fri,sat -> thu -> sun
@@ -2640,7 +2672,7 @@ class AdvanceCalendar extends JewishCalendar
 				$d->increment();
 				//continue;
 			}
-			$list[$d->month][$d->day][] = 'yomHaShoa';		
+			$list[$d->month][$d->day][] = 'yomHaShoa';
 			if ($sefirat_omer) 
 			{
 				for ($i = $diaspora ? 23 : 22; $i <= 30; $i++) 
@@ -2656,7 +2688,7 @@ class AdvanceCalendar extends JewishCalendar
 		{
 			$b = $this->passover_day('BaOmerDay', $g_year, $j_year); //18	
 			$a = $this->passover_day('AliyahDay', $g_year, $j_year); //23
-			//print_r("$a");
+			//print_r("$b");
 			$d->set($j_year, IYAR, 4);
 			// Rule #1: thu,fri -> wed
 			while ($d->dow() == 4 || $d->dow() == 5) 
@@ -2681,11 +2713,14 @@ class AdvanceCalendar extends JewishCalendar
 				$d->increment();
 			}
 			$list[$d->month][$d->day][] = 'yomHaAzmaut';
-
+			
+			$b = $this->passover_day('BaOmerDay', $g_year, $j_year); //18	
+			$a = $this->passover_day('AliyahDay', $g_year, $j_year); //23
 			$list[IYAR][$b][] = 'lagBaOmer';
-			$list[IYAR][25][] = 'yomAscension';				
-			$list[IYAR][$a][] = 'yomAscension';			
-			$list[IYAR][28][] = 'yomYerishalayim';
+			
+			//$list[IYAR][25][] = 'yomAscension';
+			$list[IYAR][$a][] = 'yomAscension';
+			//$list[IYAR][28][] = 'yomYerishalayim';
 			if ($sefirat_omer) 
 			{
 				for ($i = 1; $i <= 29; $i++) 
@@ -2700,32 +2735,36 @@ class AdvanceCalendar extends JewishCalendar
 		if ($j_month == SIVAN || !$j_month) 
 		{
 			$s = $this->passover_day('ShavuotDay', $g_year, $j_year); //6
-			$s0 = $s - 1; //5
-			$s2 = $s + 1; //7
-			$s3 = $s + 2; //8			
+			$p = $this->passover_day('PentecostDay', $g_year, $j_year); //50
+			
+			$s0 = $p - 1; //5
+			$s2 = $p + 1; //7
+			$s3 = $p+ 2; //8
+			
 			if ($eves)
 			{
-				$list[SIVAN][5][] = 'shavuotErevKhag';
-				$list[SIVAN][$s0][] = 'shavuotErevKhag';				
+				$list[SIVAN][5][] = 'shavuotErevKhagParashim';
+				$list[SIVAN][$s0][] = 'shavuotErevKhag';
 			}
-			$list[SIVAN][6][] = 'shavuot';
-			$list[SIVAN][$s][] = 'shavuot';			
+			$list[SIVAN][6][] = 'shavuotParashim';
+			$list[SIVAN][$s][] = 'shavuot';
+			$list[SIVAN][$p][] = 'shavuot';
 			if ($diaspora) 
 			{
-				$list[SIVAN][7][] = 'shavuot2';
-				$list[SIVAN][$s2][] = 'shavuot2';				
+				$list[SIVAN][7][] = 'shavuot2Parashim';
+				$list[SIVAN][$s2][] = 'shavuot2';
 				if ($isru) 
 				{
-					$list[SIVAN][8][] = 'shavuotIsruKhag';
-					$list[SIVAN][$s3][] = 'shavuotIsruKhag';					
+					$list[SIVAN][8][] = 'shavuotIsruKhagParashim';
+					$list[SIVAN][$s3][] = 'shavuotIsruKhag';
 				}
 			} 
 			else 
 			{
 				if ($isru) 
 				{
-					$list[SIVAN][7][] = 'shavuotIsruKhag';
-					$list[SIVAN][$s2][] = 'shavuotIsruKhag';					
+					$list[SIVAN][7][] = 'shavuotIsruKhagParashim';
+					$list[SIVAN][$s2][] = 'shavuotIsruKhag';
 				}
 			}
 			if ($sefirat_omer) 
@@ -2777,29 +2816,35 @@ class AdvanceCalendar extends JewishCalendar
     // Holidays of Tishrei
     //
 
-    if ($j_month == TISHREI || !$j_month) {
-
+    if ($j_month == TISHREI || !$j_month) 
+	{
       $list[TISHREI][1][] = 'roshHaShana1';
       $list[TISHREI][2][] = 'roshHaShana2';
 
       $d->set($j_year, TISHREI, 3);
-      if ($d->dow() == 6) {
+      if ($d->dow() == 6) 
+	  {
         $d->increment();
       }
       $list[TISHREI][$d->day][] = 'tsomGedalya';
 
-      if ($eves) {
+      if ($eves) 
+	  {
         $list[TISHREI][9][] = 'yomKippurErevKhag';
       }
       $list[TISHREI][10][] = 'yomKippur';
 
-      if ($eves) {
+      if ($eves) 
+	  {
         $list[TISHREI][14][] = 'sukkotErevKhag';
       }
       $list[TISHREI][15][] = 'sukkot';
-      if ($diaspora) {
+      if ($diaspora) 
+	  {
         $list[TISHREI][16][] = 'sukkot2';
-      } else {
+      } 
+	  else 
+	  {
         $list[TISHREI][16][] = 'sukkotKholHaMoed';
       }
       
@@ -2811,14 +2856,19 @@ class AdvanceCalendar extends JewishCalendar
       $list[TISHREI][21][] = 'hoshanaRabba';
       $list[TISHREI][22][] = 'sheminiAtseret';
 
-      if ($diaspora) {
+      if ($diaspora) 
+	  {
         $list[TISHREI][23][] = 'simkhatTora';
-        if ($isru) {
+        if ($isru)
+		{
           $list[TISHREI][24][] = 'sukkotIsruKhag';
         }
-      } else {
+      } 
+	  else
+	  {
         $list[TISHREI][22][] = 'simkhatTora';
-        if ($isru) {
+        if ($isru) 
+		{
           $list[TISHREI][23][] = 'sukkotIsruKhag';
         }
       }
@@ -2889,7 +2939,7 @@ class AdvanceCalendar extends JewishCalendar
 			if ($eves)
 			{
 				$list[$adar][29][] = 'taanitRoshKodeshim';
-			}			
+			}
 		}
 		
 		if ($j_month) 
