@@ -74,7 +74,7 @@ $lang['Cat_updated'] = "Categorie Actualizat ";
 $lang['Cat_added'] = "Categorie adăugată "; 
 $lang['cat_removed'] = "Categorie eliminat "; 
 $lang['Add_new_cat'] = "Adăugare nouă categorie "; 
-$lang['Click_return_catadmin'] = "% sHere Faceţi clic pe% s pentru a reveni la Categorie Administraţie "; 
+$lang['Click_return_catadmin'] = "Faceţi click %s aici %s pentru a reveni la Categorie Administraţie "; 
 $lang['Must_enter_valid_cat'] = "Trebuie să utilizaţi valabile alfa / numeric de caractere"; 
 $lang['Filter_cats_alt'] = "Arată numai categoria selectata"; 
 $lang['Filter_cats'] = "Vezi numai ..."; 
@@ -85,8 +85,8 @@ $lang['Recur_future'] = "viitorul evenimente ";
 $lang['Recur_solo'] = "Acest eveniment numai "; 
 $lang['Recur_all'] = "Toate recurrences "; 
 $lang['Cal_repeats'] = "Se repetă la fiecare: "; 
-$lang['până la'] = "până la"; 
-$lang['Primele reapar înainte de astăzi'] = "Ne pare rău, mai devreme la data la acest set nu poate fi mutat de azi înainte. \ n <br> <b> Problema eveniment la data de:"; 
+$lang['until'] = "până la"; 
+$lang['Earliest recur before today'] = "Ne pare rău, mai devreme la data la acest set nu poate fi mutat de azi înainte. \ n <br> <b> Problema eveniment la data de:"; 
 $lang['day'] = "zi (le)"; 
 $lang['month'] = "lună (e)"; 
 $lang['year'] = "an(i) "; 
@@ -176,7 +176,7 @@ $lang['time_format'] = "Timpul Format";
 // 
 // Dev lang 2.0.31 
 // 
-$lang['c_first'] = "1 decembrie"; 
+$lang['c_first'] = "1-lea"; 
 $lang['c_second'] = "2-lea"; 
 $lang['c_third'] = "3-lea"; 
 $lang['c_fourth'] = "4-lea"; 
@@ -206,30 +206,99 @@ $lang['Ev_next_month'] = "Luna următoare";
 //
 // For HebCal Months and Events
 //
-$lang['Yom'] = 'Yom'; //"Yom ":"יום "
-$lang['Rishon'] = 'Rishon'; //"ראשון","Rishon"
-$lang['Sheni'] = 'Sheni'; //"שני","Sheni"
-$lang['Shlishi'] = 'Shlishi'; //"שלישי","Shlishi"
+$lang['Yom'] = 'Iom'; //"Yom ":"יום "
+$lang['Rishon'] = 'Rişon'; //"ראשון","Rishon"
+$lang['Sheni'] = 'Şeni'; //"שני","Sheni"
+$lang['Shlishi'] = 'Şlişi'; //"שלישי","Shlishi"
 $lang['Revi\'i'] = 'Revi\'i'; //"רבעי","Revi'i"
-$lang['Chamishi'] = 'Chamishi'; //"חמישי","Chamishi"
-$lang['Shishi'] = 'Shishi'; //"ששי","Shishi"
-$lang['Shabbat'] = 'Shabbat'; //"שבת","Shabbat"
+$lang['Chamishi'] = 'Chamişi'; //"חמישי","Chamishi"
+$lang['Shishi'] = 'Şişi'; //"ששי","Shishi"
+$lang['Shabbat'] = 'Şavat'; //"שבת","Shabbat"
 
-$lang['Tishrei'] = 'Tişhri'; //"תשרי","Tishrei"
+$lang['Tishrei'] = 'Tişri'; //"תשרי","Tishrei"
 $lang['Heshvan'] = 'Heşvan'; //"חשון","Cheshvan"
 $lang['Kislev'] = 'Kislev'; //"כסלו","Kislev"
 $lang['Tevet'] = 'Tevet'; //"טבת","Tevet"
 $lang['Shevat'] = 'Şevat'; //"שבט","Shevat"
 $lang['Adar'] = 'Adar'; //"אדר","Adar"
 $lang['Adar II'] = 'Adar II'; //"אדר ב","Adar Bet"
-$lang['Nisan'] = 'Nisan'; //"ניסן","Nissan"
+$lang['Nisan'] = 'Aviv'; //"ניסן","Nissan"
 $lang['Iyar'] = 'Aiar'; //"אייר","Iyar"
 $lang['Sivan'] = 'Sivan'; //"סיון","Sivan"
 $lang['Tamuz'] = 'Tamuz'; //"תמוז","Tammuz"
 $lang['Av'] = 'Av'; //"אב","Av"
 $lang['Elul'] = 'Elul'; //"אלול","Elul"
 
-//
+// The English spelling for the holidays I took from "Jewish Calendar for Linux" by Refoyl Finkl.
+// Nisan
+$lang['Rosh Kodeshim'] 		=		'Roş Chodeşim'; //'ראש חודשים';
+$lang['Yom haSher'] 			=		'Iom heŞor'; //'יום השׂר';
+$lang['Taanit Bechorim'] =	'Teaonit Beciorim (Post PrimNăscuţi)'; //תַעֲנִית בְּכֹ֣ורים
+$lang['Erev Pesakh'] 				=		'Arev Pesach (Ajun)'; //'ערב פסח';
+$lang['Pesakh'] 					=		'Pesach'; //'פסח';
+$lang['Pesakh II (Diaspora)']		=	'Pesach II (Diaspora)'; //'שני של פסח (גולה)';
+$lang['Khol HaMoed Pesakh']	=	'Chol HaMoed Pesach'; //'חול המועד פסח'; 
+$lang['Pesakh VII']					=	'Pesach VII'; //'שביעי של פסח';
+$lang['Pesakh VIII (Diaspora)']	=	'Pesach VIII (Diaspora)';	//'שמיני של פסח (גולה)';
+$lang['Isru Khag Pesakh']			=	'Esru Chag Pesach'; //'אסרו חג';
+$lang['Yom HaBikurei']				=	'</br>Iom Rişon Omer Chaţir  (Zi Prim Omer Secerat)'; //'בְּיֹוםבִּכּוּרִ';
+$lang['Sefirat HaOmer']			=	'Sefirat HeOmer (Numărat deOmer)'; //'ספירת העומר';
+$lang['Yom HaShoa'] 	=	 'Iom HaŞoa'; //'יום השואה';
+// Iyar
+$lang['Yom HaZikaron'] 	=	 'Iom HaZikaron'; //'יום הזכרון';
+$lang['Yom HaAtsmaut'] 	=	 'Iom HaAtsmaut'; //'יום העצמאות';
+$lang['Lag BaOmer'] 	=	 'Lag BaOmer'; //'ל"ג לעומר';
+
+$lang['Yom HaAliyah']	=	 'Iom HaAliyiah'; //'יום העלייה';
+$lang['Yom Yerushalayim'] =	'Iom Ieruşalayim'; //'יום ירושלים';
+// Sivan
+$lang['Erev Shavuot Parashim'] 	=	'Arev Şavuot Paraşim'; //'ערב שבועות';
+$lang['Shavuot Parashim'] 	=	'Şavuot Paraşim'; //'שבועות';
+$lang['Shavuot II Parashim (Diaspora)'] 	= 'Şavuot II Paraşim (Diaspora)'; //'שבועות ב\' (גולה)';
+$lang['Isru Khag Shavuot Parashim'] 	= 'Esru Chag Şavuot Paraşim'; //'אסרו חג';
+
+$lang['Erev Shavuot'] 	=	'Arev Şavuot'; //'ערב שבועות';
+$lang['Shavuot'] 	=	'Şavuot'; //'שבועות';
+$lang['Shavuot II (Diaspora)'] 	= 'Şavuot II (Diaspora)'; //'שבועות ב\' (גולה)';
+$lang['Isru Khag Shavuot'] 	= 'Esru Chag Şavuot'; //'אסרו חג';
+// Tamuz
+$lang['Tsom Tamuz']	=		'Ţom Tamuz'; //'צום תמוז';
+// Av
+$lang['Tisha BeAv'] =	 'Tişa BeAv'; //'תשעה באב';
+// Tishrei
+$lang['Erev Roş HeŞanah'] 		= 'Arev Roş HeŞanah (Iom TeRuah)'; //'ערב ראש השנה';
+$lang['Roş HeŞanah I'] 			= 'Roş HeŞanah I'; //'א\' ראש השנה';
+$lang['Roş HeŞanah II'] 			= 'Roş HeŞanah II'; //'ב\' ראש השנה';
+$lang['Tsom Gedalya'] 				= 'Tsom Gedalya'; //'צום גדליה';
+$lang['Erev Yom Kippur'] 			= 'Erev Yom Kippur'; //'ערב יום הכיפורים';
+$lang['Yom Kippur'] 					= 'Yom Kippur'; //'יום הכיפורים';
+$lang['Erev Sukkot'] 					= 'Erev Sukkot'; //'ערב סוכות';
+$lang['Sukkot'] 						= 'Sucot'; //'סוכות';
+$lang['Sukkot II (Diaspora)']		= 'Sucot II (Diaspora)'; //'סוכות ב\' (גולה)';
+$lang['Khol HaMoed Sukkot']	= 'Chol HeMoed Sucot'; //'חול המועד סוכות';
+$lang['Hoshana Rabba']			= 'Hoşanae Ravah'; //'הושענא רבה';
+$lang['Shemini Atseret']			= 'Şemini Aţeret'; //'שמיני עצרת';
+$lang['Simkhat Tora']				= 'Simchat Torah'; //'שמחת תורה';
+$lang['Isru Khag Sukkot']			= 'Asru Chag Sucot'; //'אסרו חג';
+// Kislev / Tevet
+$lang['Khanukka I'] = 		'Chanucah I'; //'א\' חנוכה';
+$lang['Khanukka II'] = 		'Chanucah II'; //'ב\' חנוכה';
+$lang['Khanukka III'] = 	'Chanucah III'; //'ג\' חנוכה';
+$lang['Khanukka IV'] = 	'Chanucah IV'; //'ד\' חנוכה';
+$lang['Khanukka V'] = 		'Chanucah V'; //'ה\' חנוכה';
+$lang['Khanukka VI'] = 	'Chanucah VI'; //'ו\' חנוכה';
+$lang['Khanukka VII'] = 	'Chanucah VII'; //'ז\' חנוכה';
+$lang['Khanukka VIII'] = 	'Chanucah VIII'; //'ח\' חנוכה';
+// Tevet
+$lang['Tsom Tevet'] =					'Ţom Tevet'; //'צום טבת';
+// Shevat
+$lang['Tu BiShevat'] =					'Tu biŞevat'; //'ט\'ו בשבט';
+// Adar
+$lang['Taanit Esther'] = 				'Taanit Eşter'; //'תענית אסתר';
+$lang['Purim'] =							'Purim'; //'פורים';
+$lang['Shushan Purim'] =				'Şuşan Purim'; //'שושן פורים';
+$lang['Erev Rosh Kodeshim'] =		'Arev Roş Chodeşim'; //'ראש חודשים ערב';
+
 // That's all Folks!
 // -------------------------------------------------
 ?>
